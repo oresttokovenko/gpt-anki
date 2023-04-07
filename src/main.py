@@ -49,7 +49,7 @@ def main(input_csv, output_anki, deck_name=output_deck_name):
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print("Usage: python csv_to_anki.py <input_csv> <output_anki> [deck_name]")
+        print("Usage: python main.py <input_csv> <output_anki> [deck_name]")
     else:
         input_csv = sys.argv[1]
         output_anki = sys.argv[2]
