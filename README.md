@@ -24,15 +24,16 @@ make setup
 python src/gpt.py
 ```
  The output will be displayed in the command line
- 
+
  5. Copy the generated output and paste it into the `csv/java_decks.csv` file. You can rename this file or create a new CSV file to organize your decks
+   
  6. Convert the CSV file to an Anki deck:
 ```
 python csv_to_anki.py csv/java_decks.csv decks/java.apkg
 ```
-7. Copy the generated `java.apkg` file to your Desktop
-8. Open the Anki app and import the deck
-9. Enjoy your custom Anki deck!
+1. Copy the generated `java.apkg` file to your Desktop
+2. Open the Anki app and import the deck
+3. Enjoy your custom Anki deck!
 
 ### Best Practices
 
