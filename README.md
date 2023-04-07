@@ -9,7 +9,7 @@ Follow these instructions to create custom Anki decks using Python and ChatGPT:
 brew install anki
 ```
 2. Clone this GitHub repository.
-3. Ensure your OpenAI API key is added to your .bashrc or .zshrc file
+3. Ensure your OpenAI API key is added to your `.bashrc` or `.zshrc` file
 
 ### Usage
 
@@ -24,6 +24,7 @@ make setup
 python src/gpt.py
 ```
  The output will be displayed in the command line
+ 
  5. Copy the generated output and paste it into the `csv/java_decks.csv` file. You can rename this file or create a new CSV file to organize your decks
  6. Convert the CSV file to an Anki deck:
 ```
