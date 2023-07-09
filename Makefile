@@ -15,7 +15,7 @@ install-requirements:
 
 # create-env: creates a .env file in the root directory for storing your api key
 create-env:
-	@echo "Creating .env for api key and deck name"
+	@echo "Creating .env for api key and deck name, and"
 	touch .env
 
 # clean: removes the virtual environment directory

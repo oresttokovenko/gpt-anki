@@ -1,4 +1,4 @@
-# How to Use Python and ChatGPT to Generate Custom Anki Decks
+# Using Python, GPT4 and LangChain to Generate Custom Anki Decks
 
 Follow these instructions to create custom Anki decks using Python and ChatGPT:
 
