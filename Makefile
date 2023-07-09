@@ -15,8 +15,10 @@ install-requirements:
 
 # create-env: creates a .env file in the root directory for storing your api key
 create-env:
-	@echo "Creating .env for api key and deck name, and"
-	touch .env
+	@echo "Creating .env for api key and deck name"
+	@touch .env
+	@echo "DECK_NAME=" >> .env
+	@echo "OPENAI_API_KEY=" >> .env
 
 # clean: removes the virtual environment directory
 clean:

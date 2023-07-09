@@ -49,7 +49,7 @@ def main(input_csv, output_anki, deck_name):
     qa_list = read_csv(input_csv)
     my_deck = create_anki_deck(deck_name, qa_list)
     export_anki_deck(my_deck, output_anki)
-    print(f"Anki deck '{deck_name}' created")
+    print(f"'{deck_name}' Anki deck created")
 
 if __name__ == '__main__':
     main(csv_file_path, output_file_path, output_deck_name)

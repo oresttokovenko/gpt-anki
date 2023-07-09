@@ -2,3 +2,4 @@ langchain
 pandas
 python-dotenv
 genanki
+openai

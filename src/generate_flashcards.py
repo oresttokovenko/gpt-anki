@@ -29,6 +29,8 @@ class FlashCardArray(BaseModel):
 def create_flashcards_from_text(input_text: str, user_prompt: str, csv_file_path: str):
     llm = ChatOpenAI(openai_api_key=openai_api_key, model=model, temperature=temperature)
 
+    print("Creating flashcards...")
+
     pydantic_parser = PydanticOutputParser(pydantic_object=FlashCardArray)
 
     format_instructions = pydantic_parser.get_format_instructions()
