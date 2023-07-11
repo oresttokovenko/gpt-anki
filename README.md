@@ -34,15 +34,15 @@ Follow these steps to generate flashcards and convert them into an Anki deck:
 
 1. Paste the text from which you want to create Anki cards into the `input.txt` file.
 
-2. Run the `generate_flashcards.py` script to generate flashcards in CSV format:
+2. Switch to the `src` directory and run the `generate_flashcards.py` script to generate flashcards in CSV format:
    ```shell
-   python src/generate_flashcards.py
+   python generate_flashcards.py
    ```
    This will automatically generate a CSV file. If you wish to create additional cards, simply add new text into the `input.txt` file and rerun the `generate_flashcards.py` script. It will append the new cards to the existing CSV.
 
 3. Convert the CSV file to an Anki deck using the `generate_deck.py` script:
    ```shell
-   python src/generate_deck.py
+   python generate_deck.py
    ```
 
 4. The Anki deck will be created in the `csv` directory. 
