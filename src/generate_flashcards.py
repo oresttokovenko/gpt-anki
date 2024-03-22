@@ -1,15 +1,15 @@
 from __future__ import annotations
-from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
 from langchain.output_parsers import PydanticOutputParser
-from langchain_core.runnables.base import RunnableSerializable
 from langchain.prompts import PromptTemplate
+from langchain_core.runnables.base import RunnableSerializable
+from langchain_openai import ChatOpenAI
 from pathlib import Path
 from pydantic import BaseModel, Field
-from dotenv import load_dotenv
 from typing import TYPE_CHECKING, Any, TypeAlias
-import pandas as pd
 import logging
 import os
+import pandas as pd
 
 # for typing purposes only
 if TYPE_CHECKING:
@@ -93,7 +93,7 @@ def llm_generate_flashcards(input: str, prompt: str) -> DataFrame:
 
 def write_flashcards_to_csv(dataframe: DataFrame, csv_file_path: Path) -> None:
     logging.info("Writing to file...")
-    if os.path.isfile(csv_file_path):
+    if csv_file_path.is_file():
         dataframe.to_csv(csv_file_path, mode="a", header=False, index=False)
     else:
         dataframe.to_csv(csv_file_path, mode="w", header=False, index=False)
