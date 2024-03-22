@@ -1,12 +1,15 @@
 import csv
 import os
 import random
+import logging
 from genanki import Deck, Model, Note, Package
 from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
 
+# defining logging config
+logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 
 output_deck_name: str | None = os.environ.get("DECK_NAME")
 if output_deck_name is None:
@@ -63,7 +66,7 @@ def main(input_csv: str, output_anki: str, deck_name: str) -> None:
     qa_list = read_csv(input_csv)
     my_deck = create_anki_deck(deck_name, qa_list)
     export_anki_deck(my_deck, output_anki)
-    print(f"'{deck_name}' Anki deck created")
+    logging.info(f"'{deck_name}' Anki deck created")
 
 
 if __name__ == "__main__":
