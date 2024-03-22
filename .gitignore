@@ -4,3 +4,4 @@
 
 decks/*.apkg
 data/*.csv
+test.py

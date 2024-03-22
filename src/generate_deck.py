@@ -11,19 +11,23 @@ load_dotenv()
 # defining logging config
 logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 
-output_deck_name: str | None = os.environ.get("DECK_NAME")
-if output_deck_name is None:
-    output_deck_name = "default_deck_name"
+
+def get_deck_name() -> str:
+    deck_name: str = os.environ.get("DECK_NAME", "default_deck_name")
+    return deck_name
+
+
+output_deck_name = get_deck_name()
 
 # defining path to dirs
-data_dir: str = Path("data")
-csv_file_path: str = data_dir / f"{output_deck_name}.csv"
+data_dir: Path = Path("data")
+csv_file_path: Path = data_dir / f"{output_deck_name}.csv"
 
-deck_dir: str = Path("decks")
-output_file_path: str = deck_dir / f"{output_deck_name}.apkg"
+deck_dir: Path = Path("decks")
+output_file_path: Path = deck_dir / f"{output_deck_name}.apkg"
 
 
-def read_csv(file_path: str) -> list[tuple[str, str]]:
+def read_csv(file_path: Path) -> list[tuple[str, str]]:
     with open(file_path, "r", encoding="utf-8") as csv_file:
         csv_reader = csv.reader(csv_file)
         qa_list = [(row[0], row[1]) for row in csv_reader]
@@ -58,11 +62,11 @@ def create_anki_deck(deck_name: str, qa_list: list[tuple[str, str]]) -> Deck:
     return my_deck
 
 
-def export_anki_deck(deck: Deck, output_file: str) -> None:
+def export_anki_deck(deck: Deck, output_file: Path) -> None:
     Package(deck).write_to_file(output_file)
 
 
-def main(input_csv: str, output_anki: str, deck_name: str) -> None:
+def main(input_csv: Path, output_anki: Path, deck_name: str) -> None:
     qa_list = read_csv(input_csv)
     my_deck = create_anki_deck(deck_name, qa_list)
     export_anki_deck(my_deck, output_anki)

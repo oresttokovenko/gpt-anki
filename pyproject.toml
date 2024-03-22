@@ -18,6 +18,7 @@ pandas = "^2.2.1"
 python-dotenv = "^1.0.1"
 genanki = "^0.13.1"
 openai = "^1.14.1"
+pandas-stubs = "^2.2.1.240316"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.3.3"
@@ -30,6 +31,7 @@ target-version = 'py311'
 python_version = "3.11"
 strict = true
 disallow_untyped_defs = true
+ignore_missing_imports = true
 
 [tool.poetry.scripts]
 generate-flashcards = 'src.generate_flashcards:main'

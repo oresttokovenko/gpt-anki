@@ -1,35 +1,49 @@
 from __future__ import annotations
 from langchain_openai import ChatOpenAI
 from langchain.output_parsers import PydanticOutputParser
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables.base import RunnableSerializable
 from langchain.prompts import PromptTemplate
 from pathlib import Path
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, TypeAlias
 import pandas as pd
 import logging
 import os
 
+# for typing purposes only
 if TYPE_CHECKING:
-    # for typing purposely only
     from pandas import DataFrame
-    from langchain.chains.sequential import SequentialChain
+
+ChainType: TypeAlias = RunnableSerializable[dict[Any, Any], Any]
 
 # defining logging config
 logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 
 # loading api key and defining vars
 load_dotenv()
-deck_name: str | None = os.environ.get("DECK_NAME")
-if deck_name is None:
-    deck_name = "default_deck_name"
 
-data_dir: str = Path("data")
-csv_file_path: str = data_dir / f"{deck_name}.csv"
+
+# checking if .env vars are set
+def get_deck_name() -> str:
+    deck_name: str = os.environ.get("DECK_NAME", "default_deck_name")
+    return deck_name
+
+
+def get_api_key() -> str:
+    OPENAI_API_KEY: str | None = os.environ.get("OPENAI_API_KEY")
+    if OPENAI_API_KEY is None:
+        raise ValueError("No API key set")
+    return OPENAI_API_KEY
+
+
+# defining path to dirs
+deck_name = get_deck_name()
+data_dir: Path = Path("data")
+csv_file_path: Path = data_dir / f"{deck_name}.csv"
 
 # llm params
-OPENAI_API_KEY: str = os.environ.get("OPENAI_API_KEY")
+OPENAI_API_KEY = get_api_key()
 MODEL: str = "gpt-4"
 TEMPERATURE: float = 0.0
 
@@ -54,7 +68,9 @@ def llm_generate_flashcards(input: str, prompt: str) -> DataFrame:
 
     logging.info("Creating model...")
 
-    parser: PydanticOutputParser = PydanticOutputParser(pydantic_object=FlashCardArray)
+    parser: PydanticOutputParser[FlashCardArray] = PydanticOutputParser( # type: ignore
+        pydantic_object=FlashCardArray
+    )
 
     logging.info("Creating parser...")
 
@@ -66,16 +82,16 @@ def llm_generate_flashcards(input: str, prompt: str) -> DataFrame:
 
     logging.info("Creating prompt...")
 
-    chain: SequentialChain = llm_prompt | llm | parser
+    chain: ChainType = llm_prompt | llm | parser
 
     logging.info("Parsing and validating input data...")
 
-    output: dict = chain.invoke({"input_text": input})
-    list_of_flashcards = [card.dict() for card in output.flashcards]
+    output = chain.invoke({"input_text": input})
+    list_of_flashcards: list[str] = [card.dict() for card in output.flashcards]
     return pd.DataFrame(list_of_flashcards)
 
 
-def write_flashcards_to_csv(dataframe: DataFrame, csv_file_path: str) -> None:
+def write_flashcards_to_csv(dataframe: DataFrame, csv_file_path: Path) -> None:
     logging.info("Writing to file...")
     if os.path.isfile(csv_file_path):
         dataframe.to_csv(csv_file_path, mode="a", header=False, index=False)

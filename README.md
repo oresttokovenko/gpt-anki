@@ -20,13 +20,13 @@ This guide will take you through the steps to create custom Anki decks using Pyt
 
 2. To generate flashcards in CSV format:
    ```shell
-   generate-flashcards
+   python src/generate_flashcards
    ```
    This will automatically generate a CSV file. If you wish to create additional cards, simply add new text into the `input.txt` file and rerun the `generate-flashcards` command. It will append the new cards to the existing CSV.
 
 3. Convert the CSV file to an Anki deck using the following command:
    ```shell
-   generate-deck
+   python src/generate_deck
    ```
 
 4. The Anki deck will be created in the `decks` directory. 
