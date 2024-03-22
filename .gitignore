@@ -1,3 +1,6 @@
-/anki-env
 .DS_Store
 .env
+.ruff_cache
+
+decks/*.apkg
+data/*.csv

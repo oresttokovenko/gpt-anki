@@ -2,49 +2,33 @@
 
 This guide will take you through the steps to create custom Anki decks using Python, GPT4, and LangChain.
 
-## Prerequisites
-
-Before getting started, please ensure the following:
-
-1. Anki is installed on your system. If not, use the following command to install Anki:
-   ```shell
-   brew install anki
-   ```
-
-2. You have cloned this GitHub repository onto your local machine.
-
-3. You have your OpenAI API key ready for usage.
-
 ## Installation and Setup
 
-1. Navigate to the root directory of the cloned repository.
+1. Open the `.env.example` file, rename it to `.env` and add the following information:
+   - Name of your Anki deck
+   - Your OpenAI API key
 
-2. Setup the necessary dependencies by running the Make file:
-   ```shell
-   make setup
-   ```
+2. Install the dependencies
+   - using poetry: `poetry install --without dev`
+   - using pip: `python3.11 -m venv venv` and `pip install -e .`
 
-3. Open the `.env` file and add the following information:
-   - Name of your Anki deck.
-   - Your OpenAI API key.
 
 ## Usage
 
-Follow these steps to generate flashcards and convert them into an Anki deck:
 
 1. Paste the text from which you want to create Anki cards into the `input.txt` file.
 
-2. Switch to the `src` directory and run the `generate_flashcards.py` script to generate flashcards in CSV format:
+2. To generate flashcards in CSV format:
    ```shell
-   python generate_flashcards.py
+   generate-flashcards
    ```
-   This will automatically generate a CSV file. If you wish to create additional cards, simply add new text into the `input.txt` file and rerun the `generate_flashcards.py` script. It will append the new cards to the existing CSV.
+   This will automatically generate a CSV file. If you wish to create additional cards, simply add new text into the `input.txt` file and rerun the `generate-flashcards` command. It will append the new cards to the existing CSV.
 
-3. Convert the CSV file to an Anki deck using the `generate_deck.py` script:
+3. Convert the CSV file to an Anki deck using the following command:
    ```shell
-   python generate_deck.py
+   generate-deck
    ```
 
-4. The Anki deck will be created in the `csv` directory. 
+4. The Anki deck will be created in the `decks` directory. 
 
 5. Open the Anki app and import the deck using the app's import function.

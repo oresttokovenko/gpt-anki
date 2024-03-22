@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "generate_flashcards"
+version = "1.0.0"
+description = "Using Python, GPT4 and LangChain to Generate Custom Anki Decks"
+authors = ["Orest Tokovenko <hi@oresttokovenko.com>"]
+readme = "README.md"
+license = "MIT"
+package-mode = false
+packages = [
+    {include = "src"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain = "^0.1.12"
+langchain_openai = "^0.0.8"
+pandas = "^2.2.1"
+python-dotenv = "^1.0.1"
+genanki = "^0.13.1"
+openai = "^1.14.1"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.3"
+mypy = "^1.9.0"
+
+[tool.ruff]
+target-version = 'py311'
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+disallow_untyped_defs = true
+
+[tool.poetry.scripts]
+generate-flashcards = 'src.generate_flashcards:main'
+generate-deck = 'src.generate_deck:main'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
