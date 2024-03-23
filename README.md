@@ -52,4 +52,4 @@ If you're interested in modifying or contributing to the project, follow these a
    poetry run nox
    ```
 
-   This command runs predefined Nox sessions, which include running tests ruff and mypy as defined in the `noxfile.py`
+   This command runs predefined Nox sessions, which include running ruff and mypy as defined in the `noxfile.py`
