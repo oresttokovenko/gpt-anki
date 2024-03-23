@@ -13,6 +13,12 @@ This guide will take you through the steps to create custom Anki decks using Pyt
    ```
    poetry install --without dev
    ```
+   Alternatively if you don't have Poetry installed, use the following command and execute the `.py` files directly
+   ```
+   python3.11 -m venv venv && \
+   source venv/bin/activate && \
+   pip install -r requirements.txt
+   ```
 
 ## Usage
 
