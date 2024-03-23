@@ -68,7 +68,7 @@ def llm_generate_flashcards(input: str, prompt: str) -> DataFrame:
 
     logging.info("Creating model...")
 
-    parser: PydanticOutputParser[FlashCardArray] = PydanticOutputParser( # type: ignore
+    parser: PydanticOutputParser[FlashCardArray] = PydanticOutputParser(
         pydantic_object=FlashCardArray
     )
 

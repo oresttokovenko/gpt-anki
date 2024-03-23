@@ -5,7 +5,6 @@ description = "Using Python, GPT4 and LangChain to Generate Custom Anki Decks"
 authors = ["Orest Tokovenko <hi@oresttokovenko.com>"]
 readme = "README.md"
 license = "MIT"
-package-mode = false
 packages = [
     {include = "src"}
 ]
@@ -23,6 +22,8 @@ pandas-stubs = "^2.2.1.240316"
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.3.3"
 mypy = "^1.9.0"
+nox-poetry = "^1.0.3"
+poetry-plugin-export = "^1.7.1"
 
 [tool.ruff]
 target-version = 'py311'
@@ -32,6 +33,8 @@ python_version = "3.11"
 strict = true
 disallow_untyped_defs = true
 ignore_missing_imports = true
+exclude = "noxfile.py"
+follow_imports = "normal"
 
 [tool.poetry.scripts]
 generate-flashcards = 'src.generate_flashcards:main'
