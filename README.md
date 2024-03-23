@@ -9,14 +9,14 @@ This guide will take you through the steps to create custom Anki decks using Pyt
    - Name of your Anki deck
    - Your OpenAI API key
 
-2. Install the dependencies
+2. Install the core dependencies:
    ```
    poetry install --without dev
    ```
 
 ## Usage
 
-1. Paste the text from which you want to create Anki cards into the `input.txt` file.
+1. Paste the text from which you want to create Anki cards into the `input.txt` file
 
 2. To generate flashcards in CSV format:
 
@@ -32,7 +32,7 @@ This guide will take you through the steps to create custom Anki decks using Pyt
    poetry run generate-deck
    ```
 
-4. The Anki deck will be created in the `decks` directory.
+4. The Anki deck will be created in the `decks` directory
 
 5. Open the Anki app and import the deck using the app's import function
 
@@ -52,4 +52,4 @@ If you're interested in modifying or contributing to the project, follow these a
    poetry run nox
    ```
 
-   This command runs predefined Nox sessions, which include running tests ruff and mypy as defined in the `noxfile.py`.
+   This command runs predefined Nox sessions, which include running tests ruff and mypy as defined in the `noxfile.py`
