@@ -11,13 +11,14 @@ def type_check(session):
 @session(python="3.11")
 def lint(session):
     session.install("ruff")
-    session.run("ruff", "check", ".")
+    session.run("ruff", "check", ".", "--fix")
 
 
 @session(python="3.11")
 def format(session):
     session.install("ruff")
     session.run("ruff", "format", ".")
+
 
 @session(python="3.11")
 def sort(session):

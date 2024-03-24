@@ -33,10 +33,10 @@ def get_deck_name() -> str:
 
 
 def get_api_key() -> str:
-    OPENAI_API_KEY: str | None = os.environ.get("OPENAI_API_KEY")
-    if OPENAI_API_KEY is None:
+    openai_api_key: str | None = os.environ.get("OPENAI_API_KEY")
+    if openai_api_key is None:
         raise ValueError("No API key set")
-    return OPENAI_API_KEY
+    return openai_api_key
 
 
 # defining path to dirs
@@ -104,18 +104,15 @@ def write_flashcards_to_csv(dataframe: DataFrame, csv_file_path: Path) -> None:
 
 def main() -> None:
     try:
-        with open("src/input.txt") as f:
-            input_text = f.read()
-
-        with open("src/prompt.txt") as f:
-            user_prompt = f.read()
+        input_text = Path("src/input.txt").read_text()
+        user_prompt = Path("src/prompt.txt").read_text()
 
         df = llm_generate_flashcards(input_text, user_prompt)
         write_flashcards_to_csv(df, csv_file_path)
         logging.info("Done \U0001f600")
 
-    except Exception as e:
-        logging.error(f"Error occurred: {e}")
+    except Exception:
+        logging.exception("Error occurred")
         return
 
 

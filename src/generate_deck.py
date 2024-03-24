@@ -29,7 +29,7 @@ output_file_path: Path = deck_dir / f"{output_deck_name}.apkg"
 
 
 def read_csv(file_path: Path) -> list[tuple[str, str]]:
-    with open(file_path, encoding="utf-8") as csv_file:
+    with Path.open(file_path, encoding="utf-8") as csv_file:
         csv_reader = csv.reader(csv_file)
         qa_list = [(row[0], row[1]) for row in csv_reader]
     return qa_list
@@ -67,12 +67,11 @@ def export_anki_deck(deck: Deck, output_file: Path) -> None:
     Package(deck).write_to_file(output_file)
 
 
-def main(input_csv: Path, output_anki: Path, deck_name: str) -> None:
-    qa_list = read_csv(input_csv)
-    my_deck = create_anki_deck(deck_name, qa_list)
-    export_anki_deck(my_deck, output_anki)
-    logging.info(f"'{deck_name}' Anki deck created")
-
+def main() -> None:
+    qa_list = read_csv(csv_file_path)
+    my_deck = create_anki_deck(output_deck_name, qa_list)
+    export_anki_deck(my_deck, output_file_path)
+    logging.info(f"'{output_deck_name}' Anki deck created")
 
 if __name__ == "__main__":
-    main(csv_file_path, output_file_path, output_deck_name)
+    main()

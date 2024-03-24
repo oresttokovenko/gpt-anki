@@ -30,6 +30,7 @@ isort = "^5.13.2"
 target-version = 'py311'
 
 [tool.ruff.lint]
+# select = ["ALL"]
 select = [
     # pycodestyle
     "E",
