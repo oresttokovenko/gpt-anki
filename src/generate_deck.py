@@ -73,5 +73,6 @@ def main() -> None:
     export_anki_deck(my_deck, output_file_path)
     logging.info(f"'{output_deck_name}' Anki deck created")
 
+
 if __name__ == "__main__":
     main()
