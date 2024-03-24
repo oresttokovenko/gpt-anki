@@ -1,10 +1,11 @@
 import csv
+import logging
 import os
 import random
-import logging
-from genanki import Deck, Model, Note, Package
 from pathlib import Path
+
 from dotenv import load_dotenv
+from genanki import Deck, Model, Note, Package
 
 load_dotenv()
 

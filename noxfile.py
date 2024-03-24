@@ -18,3 +18,8 @@ def lint(session):
 def format(session):
     session.install("ruff")
     session.run("ruff", "format", ".")
+
+@session(python="3.11")
+def sort(session):
+    session.install("isort")
+    session.run("isort", ".")

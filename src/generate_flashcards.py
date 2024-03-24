@@ -1,15 +1,17 @@
 from __future__ import annotations
+
+import logging
+import os
+from pathlib import Path
+from typing import TYPE_CHECKING, Any, TypeAlias
+
+import pandas as pd
 from dotenv import load_dotenv
 from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import PromptTemplate
 from langchain_core.runnables.base import RunnableSerializable
 from langchain_openai import ChatOpenAI
-from pathlib import Path
 from pydantic import BaseModel, Field
-from typing import TYPE_CHECKING, Any, TypeAlias
-import logging
-import os
-import pandas as pd
 
 # for typing purposes only
 if TYPE_CHECKING:
