@@ -62,7 +62,8 @@ class FlashCardArray(BaseModel):
 
 def llm_generate_flashcards(input: str, prompt: str) -> DataFrame:
     """
-    Generates flashcards from the given input text, formats them based on the user's prompt,
+    Generates flashcards from the given input text,
+    formats them based on the user's prompt,
     and saves the output to a CSV file in the data directory
     """
 
@@ -103,10 +104,10 @@ def write_flashcards_to_csv(dataframe: DataFrame, csv_file_path: Path) -> None:
 
 def main() -> None:
     try:
-        with open("src/input.txt", "r") as f:
+        with open("src/input.txt") as f:
             input_text = f.read()
 
-        with open("src/prompt.txt", "r") as f:
+        with open("src/prompt.txt") as f:
             user_prompt = f.read()
 
         df = llm_generate_flashcards(input_text, user_prompt)

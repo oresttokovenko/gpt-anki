@@ -29,7 +29,7 @@ output_file_path: Path = deck_dir / f"{output_deck_name}.apkg"
 
 
 def read_csv(file_path: Path) -> list[tuple[str, str]]:
-    with open(file_path, "r", encoding="utf-8") as csv_file:
+    with open(file_path, encoding="utf-8") as csv_file:
         csv_reader = csv.reader(csv_file)
         qa_list = [(row[0], row[1]) for row in csv_reader]
     return qa_list
