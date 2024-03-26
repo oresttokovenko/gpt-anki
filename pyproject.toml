@@ -1,13 +1,5 @@
 [tool.poetry]
-name = "generate_flashcards"
-version = "1.0.0"
-description = "Using Python, GPT4 and LangChain to Generate Custom Anki Decks"
-authors = ["Orest Tokovenko <hi@oresttokovenko.com>"]
-readme = "README.md"
-license = "MIT"
-packages = [
-    {include = "src"}
-]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -30,7 +22,6 @@ isort = "^5.13.2"
 target-version = 'py311'
 
 [tool.ruff.lint]
-# select = ["ALL"]
 select = [
     # pycodestyle
     "E",
